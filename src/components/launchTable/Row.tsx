@@ -9,15 +9,13 @@ import { RocketCell } from "./columns/Rocket";
 
 interface RowProps {
   data: Launch;
-  index: number
+  index: number;
 }
 
-export const Row: React.FC<RowProps> = ({index, data}) => {
+export const Row: React.FC<RowProps> = ({ index, data }) => {
   return (
-    <tr>
-      <td>
-          {index}
-      </td>
+    <tr >
+      <td >{String(index + 1).padStart(2, "0")}</td>
       <td>
         <LaunchedCell {...data} />
       </td>

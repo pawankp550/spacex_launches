@@ -13,7 +13,7 @@ export const Table: React.FC<TableProps> = ({ data }) => {
       <Header />
       <tbody>
         {data?.map((d, i) => (
-          <Row  index={i} data={d}/>
+          <Row index={i} data={d} />
         ))}
       </tbody>
     </table>
