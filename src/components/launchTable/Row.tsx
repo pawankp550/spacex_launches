@@ -26,7 +26,11 @@ export const Row: React.FC<RowProps> = ({ index, data }) => {
 
   return (
     <>
-      <LaunchDetailsModal isOpen={isModalOpen} />
+      <LaunchDetailsModal
+        isOpen={isModalOpen}
+        onClose={onRowClick}
+        data={data}
+      />
       <tr onClick={onRowClick}>
         <td className={CELL_CLASS}>{String(index + 1).padStart(2, "0")}</td>
         <td className={CELL_CLASS}>
