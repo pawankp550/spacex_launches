@@ -1,5 +1,7 @@
 import classNames from "classnames";
 import { useState } from "react";
+import { ReactComponent as UpIcon } from "../../icons/chevron-up.svg";
+import { ReactComponent as DownIcon } from "../../icons/chevron-down.svg";
 
 interface Option {
   label: string;
@@ -10,33 +12,40 @@ interface SelectProps {
   label: string;
   options: Option[];
   LeftIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
-  RightIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
   selected: string;
   onChange: (v: string) => void;
+  optionsCLassname?: string;
+  labelClassName?: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
   LeftIcon,
   options,
-  RightIcon,
   label,
   selected,
   onChange,
+  optionsCLassname = "",
+  labelClassName = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const onOptionClick = (value: string) => {
-      onChange(value)
-      setIsOpen(false)
-  }
-  
+    onChange(value);
+    setIsOpen(false);
+  };
+
   const getLabel = () => {
     return options.find((o) => o.value === selected);
   };
-  
+
   const renderOptions = () => {
     return (
-      <>
+      <div
+        className={classNames(
+          "absolute border rounded top-10 z-10 flex flex-col bg-white",
+          optionsCLassname
+        )}
+      >
         {options.map(({ label, value }) => {
           return (
             <span
@@ -49,20 +58,21 @@ export const Select: React.FC<SelectProps> = ({
             </span>
           );
         })}
-      </>
+      </div>
     );
   };
 
   return (
-    <div className="static w-fit">
-      <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+    <div className={classNames("relative w-fit", labelClassName)}>
+      <div
+        className="cursor-pointer flex items-center"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {LeftIcon && <LeftIcon />}
-        <span>{getLabel()?.label || label}</span>
-        {RightIcon && <RightIcon />}
+        <span className="mr-2">{getLabel()?.label || label}</span>
+        {isOpen ? <UpIcon /> : <DownIcon />}
       </div>
-      <div className="absolute border rounded top-10 z-10 flex flex-col bg-white">
-        {isOpen ? renderOptions() : null}
-      </div>
+      {isOpen ? renderOptions() : null}
     </div>
   );
 };

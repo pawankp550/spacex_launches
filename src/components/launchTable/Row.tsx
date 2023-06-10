@@ -7,6 +7,8 @@ import { OrbitCell } from "./columns/Orbit";
 import { StatusCell } from "./columns/Status";
 import { RocketCell } from "./columns/Rocket";
 
+const CELL_CLASS = "p-5 text-left";
+
 interface RowProps {
   data: Launch;
   index: number;
@@ -14,29 +16,26 @@ interface RowProps {
   isLastRow?: boolean;
 }
 
-export const Row: React.FC<RowProps> = ({
-  index,
-  data,
-}) => {
+export const Row: React.FC<RowProps> = ({ index, data }) => {
   return (
     <tr>
-      <td className="p-5">{String(index + 1).padStart(2, "0")}</td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>{String(index + 1).padStart(2, "0")}</td>
+      <td className={CELL_CLASS}>
         <LaunchedCell {...data} />
       </td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>
         <LocationCell {...data} />
       </td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>
         <MissionCell {...data} />
       </td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>
         <OrbitCell {...data} />
       </td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>
         <StatusCell {...data} />
       </td>
-      <td className="p-5">
+      <td className={CELL_CLASS}>
         <RocketCell {...data} />
       </td>
     </tr>

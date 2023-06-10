@@ -56,12 +56,15 @@ export default function App() {
   return (
     <div className="App">
       <div className="p-5 flex flex-col justify-center items-center">
-        <Select
-          label=""
-          options={filterOptions}
-          onChange={(v) => onFilterChange(v as LaunchFilter)}
-          selected={selectedLaunchesFilter}
-        />
+        <div className="flex w-full justify-end py-5">
+          <Select
+            label=""
+            options={filterOptions}
+            onChange={(v) => onFilterChange(v as LaunchFilter)}
+            selected={selectedLaunchesFilter}
+            optionsCLassname="w-max right-0 text-left"
+          />
+        </div>
         <Table data={tableData} />
         <div className="mt-5">
           <Pagination current={currentPage} onClick={onPaginationClick} />
