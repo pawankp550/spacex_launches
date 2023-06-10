@@ -124,3 +124,14 @@ export interface Launch {
   static_fire_date_unix: number;
   timeline: Timeline;
 }
+
+export enum LaunchFilter {
+  all_launches = "all_launches",
+  upcoming_launches = "upcoming_launches",
+  successful_launches = "successful_launches",
+  failed_launches = "failed_launches",
+}
+
+export enum Filters {
+  launches = 'launches'
+}

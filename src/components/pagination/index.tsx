@@ -34,7 +34,13 @@ export const Pagination: React.FC<PaginationProps> = ({ current, onClick }) => {
     } else {
       return (
         <>
-          <Button onBtnClick={() => onClick(7)} label={7} />
+          <Button
+            className={classnames(BTN_CLASS, {
+              "font-semibold": current === 7,
+            })}
+            onBtnClick={() => onClick(7)}
+            label={7}
+          />
           <Button
             className={classnames(BTN_CLASS, {
               "font-semibold": current === 8,

@@ -1,13 +1,43 @@
 import "./styles.css";
 import { Table } from "./components/launchTable";
 import { useEffect, useState } from "react";
-import { Launch } from "./types/launch";
+import { Launch, LaunchFilter } from "./types/launch";
 import { getLaunchData } from "./requests/index";
 import { Pagination } from "./components/pagination";
+import { Select } from "./components/Select";
+import { addQueryString, getQueryParamValue } from "./utils/launch";
+
+const filterOptions = [
+  {
+    label: "All Launches",
+    value: LaunchFilter.all_launches,
+  },
+  {
+    label: "Upcoming Launches",
+    value: LaunchFilter.upcoming_launches,
+  },
+  {
+    label: "Successful Launches",
+    value: LaunchFilter.successful_launches,
+  },
+  {
+    label: "Failed Launches",
+    value: LaunchFilter.failed_launches,
+  },
+];
 
 export default function App() {
   const [tableData, setTableData] = useState<Launch[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedLaunchesFilter, setSelectedLaunchesFilter] = useState(
+    getQueryParamValue("launches") || LaunchFilter.all_launches
+  );
+
+  const onFilterChange = (v: string) => {
+    addQueryString("launches", v);
+    setCurrentPage(1);
+    setSelectedLaunchesFilter(v as LaunchFilter);
+  };
 
   const fetchData = async () => {
     const offset = currentPage * 12 - 12;
@@ -17,7 +47,7 @@ export default function App() {
 
   useEffect(() => {
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, selectedLaunchesFilter]);
 
   const onPaginationClick = (selection: number) => {
     setCurrentPage(selection);
@@ -25,12 +55,18 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <div className="p-5">
+      <div className="p-5 flex flex-col justify-center items-center">
+        <Select
+          label=""
+          options={filterOptions}
+          onChange={(v) => onFilterChange(v as LaunchFilter)}
+          selected={selectedLaunchesFilter}
+        />
         <Table data={tableData} />
+        <div className="mt-5">
+          <Pagination current={currentPage} onClick={onPaginationClick} />
+        </div>
       </div>
-      <Pagination current={currentPage} onClick={onPaginationClick} />
     </div>
   );
 }
