@@ -6,6 +6,7 @@ import { getLaunchData } from "./requests/index";
 import { Pagination } from "./components/pagination";
 import { Select } from "./components/Select";
 import { addQueryString, getQueryParamValue } from "./utils/launch";
+import { ReactComponent as FunnelIcon } from "./icons/funnel.svg";
 
 const filterOptions = [
   {
@@ -63,10 +64,11 @@ export default function App() {
             onChange={(v) => onFilterChange(v as LaunchFilter)}
             selected={selectedLaunchesFilter}
             optionsCLassname="w-max right-0 text-left"
+            LeftIcon={FunnelIcon}
           />
         </div>
         <Table data={tableData} />
-        <div className="mt-5">
+        <div className="mt-5 flex w-full justify-end">
           <Pagination current={currentPage} onClick={onPaginationClick} />
         </div>
       </div>

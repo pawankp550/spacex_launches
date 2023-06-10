@@ -68,7 +68,7 @@ export const Select: React.FC<SelectProps> = ({
         className="cursor-pointer flex items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {LeftIcon && <LeftIcon />}
+        {LeftIcon && <LeftIcon className="h-3 w-3 mr-2" />}
         <span className="mr-2">{getLabel()?.label || label}</span>
         {isOpen ? <UpIcon /> : <DownIcon />}
       </div>
