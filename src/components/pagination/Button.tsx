@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`border border-solid border-gray-200 px-2 py-1 ${className}`}
+      className={`border border-solid border-gray-200 h-10 w-10 ${className}`}
       onClick={onBtnClick}
     >
       {label}

@@ -10,28 +10,33 @@ import { RocketCell } from "./columns/Rocket";
 interface RowProps {
   data: Launch;
   index: number;
+  isFirstRow?: boolean;
+  isLastRow?: boolean;
 }
 
-export const Row: React.FC<RowProps> = ({ index, data }) => {
+export const Row: React.FC<RowProps> = ({
+  index,
+  data,
+}) => {
   return (
-    <tr >
-      <td >{String(index + 1).padStart(2, "0")}</td>
-      <td>
+    <tr>
+      <td className="p-5">{String(index + 1).padStart(2, "0")}</td>
+      <td className="p-5">
         <LaunchedCell {...data} />
       </td>
-      <td>
+      <td className="p-5">
         <LocationCell {...data} />
       </td>
-      <td>
+      <td className="p-5">
         <MissionCell {...data} />
       </td>
-      <td>
+      <td className="p-5">
         <OrbitCell {...data} />
       </td>
-      <td>
+      <td className="p-5">
         <StatusCell {...data} />
       </td>
-      <td>
+      <td className="p-5">
         <RocketCell {...data} />
       </td>
     </tr>

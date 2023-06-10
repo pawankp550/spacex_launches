@@ -8,7 +8,7 @@ export const Header = () => {
       "Orbit",
       "Status",
       "Rocket",
-    ].map((l) => <td>{l}</td>);
+    ].map((l) => <td className="p-2">{l}</td>);
   };
-  return <thead>{getHeaders()}</thead>;
+  return <thead className="bg-gray-100">{getHeaders()}</thead>;
 };

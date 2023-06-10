@@ -9,13 +9,15 @@ interface TableProps {
 
 export const Table: React.FC<TableProps> = ({ data }) => {
   return (
-    <table>
-      <Header />
-      <tbody>
-        {data?.map((d, i) => (
-          <Row index={i} data={d} />
-        ))}
-      </tbody>
-    </table>
+    <div className="w-fit border border-solid border-gray-200 rounded-lg drop-shadow-sm overflow-hidden">
+      <table className="table-auto ">
+        <Header />
+        <tbody>
+          {data?.map((d, i) => (
+            <Row index={i} data={d} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };

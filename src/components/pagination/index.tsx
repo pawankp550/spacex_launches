@@ -1,33 +1,61 @@
-import { Button } from './Button'
+import { Button } from "./Button";
+import classnames from "classnames";
 
 interface PaginationProps {
   current: number;
   onClick: (a: number) => void;
 }
 
+const BTN_CLASS = "border-l-0";
+
 export const Pagination: React.FC<PaginationProps> = ({ current, onClick }) => {
-  const btnClass = "border border-solid border-gray-200 px-2 py-1"
-  
   const getPagination = () => {
     if (10 - current > 3) {
       return (
         <>
           <Button
-            onBtnClick={(e) => onClick(current)}
+            onBtnClick={() => onClick(current)}
             label={current}
+            className="font-semibold"
           />
-          <Button className={btnClass} onBtnClick={() => onClick(current + 1)} label={current + 1} />
-          {"..."}
-          <Button className={btnClass} onBtnClick={() => onClick(10)} label={10} />
+          <Button
+            className={BTN_CLASS}
+            onBtnClick={() => onClick(current + 1)}
+            label={current + 1}
+          />
+          <Button className={BTN_CLASS} label="..." onBtnClick={() => {}} />
+          <Button
+            className={BTN_CLASS}
+            onBtnClick={() => onClick(10)}
+            label={10}
+          />
         </>
       );
     } else {
       return (
         <>
-          <Button  className={btnClass} onBtnClick={() => onClick(7)}  label={7}/>
-          <Button className={btnClass} onBtnClick={() => onClick(8)} label={8} />
-          <Button className={btnClass} onBtnClick={() => onClick(9)} label={9} />
-          <Button className={btnClass} onBtnClick={() => onClick(10)} label={10}/>
+          <Button onBtnClick={() => onClick(7)} label={7} />
+          <Button
+            className={classnames(BTN_CLASS, {
+              "font-semibold": current === 8,
+            })}
+            onBtnClick={() => onClick(8)}
+            label={8}
+          />
+          <Button
+            className={classnames(BTN_CLASS, {
+              "font-semibold": current === 9,
+            })}
+            onBtnClick={() => onClick(9)}
+            label={9}
+          />
+          <Button
+            className={classnames(BTN_CLASS, {
+              "font-semibold": current === 10,
+            })}
+            onBtnClick={() => onClick(10)}
+            label={10}
+          />
         </>
       );
     }
@@ -47,9 +75,17 @@ export const Pagination: React.FC<PaginationProps> = ({ current, onClick }) => {
 
   return (
     <div>
-      <Button onBtnClick={() => onPrevClick} label={"<"}/>
+      <Button
+        onBtnClick={() => onPrevClick()}
+        label={"<"}
+        className="border-r-0 rounded-l-md"
+      />
       {getPagination()}
-      <Button onBtnClick={() => onNextClick} label={">"} />
+      <Button
+        onBtnClick={() => onNextClick()}
+        label={">"}
+        className="border-l-0 rounded-r-md"
+      />
     </div>
   );
 };
