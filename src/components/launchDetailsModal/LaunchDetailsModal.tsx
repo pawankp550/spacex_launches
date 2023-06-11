@@ -59,7 +59,7 @@ export const LaunchDetailsModal: React.FC<LaunchDetailsModal> = ({
   return (
     <Modal
       isOpen={isOpen}
-      className="border-1 drop-shadow-md bg-white p-2 top-40 absolute w-3/4"
+      className="border-1 drop-shadow-md bg-white p-2 top-40 absolute w-1/2"
       overlayClassName="w-full h-full flex justify-center items-center"
       shouldCloseOnOverlayClick={true}
     >
@@ -95,42 +95,44 @@ export const LaunchDetailsModal: React.FC<LaunchDetailsModal> = ({
           </div>
         </div>
         <div className="pt-5">
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Flight Number</span>
-            {flight_number}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Mission Name</span>
-            {mission_name}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Rocket Type</span>
-            {rocket_type}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Rocket Name</span>
-            {rocket_name}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Manufacturer</span>
-            {payloads[0]?.manufacturer || "-"}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Launch Date</span>
-            {formatDate(launch_date_utc)}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Payload Type</span>
-            {payloads[0]?.payload_type || "-"}
-          </div>
-          <div className="border-b border-gray-100 p-2">
-            <span className="mr-20">Orbit</span>
-            {payloads[0]?.orbit || "-"}
-          </div>
-          <div className="p-2">
-            <span className="mr-20">Launch Site</span>
-            {site_name}
-          </div>
+          <table>
+            <tr className="border-b border-gray-100">
+              <td className="py-2 pr-10">Flight Number</td>
+              <td>{flight_number}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Mission Name</td>
+              <td>{mission_name}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Rocket Type</td>
+              <td>{rocket_type}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Rocket Name</td>
+              <td>{rocket_name}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Manufacturer</td>
+              <td>{payloads[0]?.manufacturer || "-"}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Launch Date</td>
+              <td>{formatDate(launch_date_utc)}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Payload Type</td>
+              <td>{payloads[0]?.payload_type || "-"}</td>
+            </tr>
+            <tr className="border-b border-gray-100 p-2">
+              <td className="py-2 pr-10">Orbit</td>
+              <td>{payloads[0]?.orbit || "-"}</td>
+            </tr>
+            <tr className="p-2">
+              <td className="py-2 pr-10">Launch Site</td>
+              <td>{site_name}</td>
+            </tr>
+          </table>
         </div>
       </div>
     </Modal>
