@@ -60,6 +60,7 @@ export default function App() {
   const [selectedDateRange, setSelectedDateRange] = useState(
     getQueryParamValue(Filters.date_range) || DateFilters.all_time
   );
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const onFilterChange = (v: string) => {
     addQueryString("launches", v);
@@ -74,9 +75,15 @@ export default function App() {
   };
 
   const fetchData = async () => {
-    const offset = currentPage * 12 - 12;
-    const data = await getLaunchData(offset, 12);
-    setTableData(data || []);
+    try {
+      setIsDataLoading(true);
+      const offset = currentPage * 12 - 12;
+      const data = await getLaunchData(offset, 12);
+      setTableData(data || []);
+    } catch (err) {
+    } finally {
+      setIsDataLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -108,9 +115,11 @@ export default function App() {
             LeftIcon={FunnelIcon}
           />
         </div>
-        <Table data={tableData} />
+        <Table data={tableData} isLoading={isDataLoading} />
         <div className="mt-5 flex w-full justify-end">
-          <Pagination current={currentPage} onClick={onPaginationClick} />
+          {!isDataLoading ? (
+            <Pagination current={currentPage} onClick={onPaginationClick} />
+          ) : null}
         </div>
       </div>
     </div>
