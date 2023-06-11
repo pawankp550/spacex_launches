@@ -6,7 +6,7 @@ import { MissionCell } from "./columns/Mission";
 import { OrbitCell } from "./columns/Orbit";
 import { StatusCell } from "./columns/Status";
 import { RocketCell } from "./columns/Rocket";
-import { LaunchDetailsModal } from "../launchDetailsModal";
+import { LaunchDetailsModal } from "../launchDetailsModal/LaunchDetailsModal";
 
 const CELL_CLASS = "p-5 text-left";
 
@@ -31,7 +31,7 @@ export const Row: React.FC<RowProps> = ({ index, data }) => {
         onClose={onRowClick}
         data={data}
       />
-      <tr onClick={onRowClick}>
+      <tr onClick={onRowClick} className="cursor-pointer">
         <td className={CELL_CLASS}>{String(index + 1).padStart(2, "0")}</td>
         <td className={CELL_CLASS}>
           <LaunchedCell {...data} />

@@ -30,3 +30,16 @@ export const getLaunchQueryParams = (
       return {};
   }
 };
+
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const formattedDate = date.toLocaleString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  return formattedDate;
+};
