@@ -132,6 +132,15 @@ export enum LaunchFilter {
   failed_launches = "failed_launches",
 }
 
+export enum DateFilters {
+  past_6_months = "past_6_months",
+  past_1_year = "past_1_year",
+  past_5_years = "past_5_years",
+  past_10_years = "past_10_years",
+  all_time = "all_time",
+}
+
 export enum Filters {
-  launches = 'launches'
+  launches = "launches",
+  date_range = "date_range",
 }
