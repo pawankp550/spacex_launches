@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
+html,
+#root,
+.App,
+body {
+  height: 100%;
+}
+
+.App body #root {
   font-family: sans-serif;
   text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
